@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4tholgwkhux6"]
+
+[resource]
+resource_name = "Firdge"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.654902, 0.843137, 1, 1)
+metallic = 0.1
+roughness = 0.2

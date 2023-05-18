@@ -1,0 +1,122 @@
+[gd_scene load_steps=18 format=3 uid="uid://dlsb1gs2bjst3"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_an2p4"]
+[ext_resource type="Material" uid="uid://j13kbphdubkm" path="res://visuals/border_material.tres" id="3_45naa"]
+[ext_resource type="Texture2D" uid="uid://cvuq3b0ij4ejr" path="res://player/sprites/cookie.png" id="3_53bjw"]
+[ext_resource type="AnimationLibrary" uid="uid://l0jis02bra5b" path="res://player/cake_animations.res" id="3_cw3hs"]
+[ext_resource type="Texture2D" uid="uid://3xy7j2jwd6jp" path="res://player/eyes.png" id="3_ycv16"]
+[ext_resource type="Texture2D" uid="uid://cxayk0cu10rcp" path="res://player/eye pupil.png" id="4_obhfg"]
+[ext_resource type="AudioStream" uid="uid://bxrewb450rn3c" path="res://player/player hurt.wav" id="7_eheug"]
+[ext_resource type="AudioStream" uid="uid://b7kt6cjs5n6q7" path="res://player/player fall.wav" id="8_4iu51"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svqgr"]
+radius = 0.83997
+height = 1.67994
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7fa2k"]
+gravity = Vector3(0, -4, 0)
+initial_velocity_min = -4.0
+initial_velocity_max = 4.0
+scale_min = 0.8
+scale_max = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6ny1"]
+next_pass = ExtResource("3_45naa")
+albedo_color = Color(1, 0.92549, 0.623529, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_the5u"]
+material = SubResource("StandardMaterial3D_u6ny1")
+radius = 0.25
+height = 0.5
+radial_segments = 32
+rings = 16
+
+[sub_resource type="Curve" id="Curve_ipekj"]
+_data = [Vector2(0, 1), 0.0, -0.14717, 0, 0, Vector2(0.982906, 0), -3.76581, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tfrnm"]
+curve = SubResource("Curve_ipekj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ad4px"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_tfrnm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptoro"]
+transparency = 1
+albedo_texture = ExtResource("3_53bjw")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vbo8h"]
+material = SubResource("StandardMaterial3D_ptoro")
+orientation = 2
+
+[node name="Player" type="CharacterBody3D" groups=["players"]]
+disable_mode = 2
+script = ExtResource("1_an2p4")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.127024, 0)
+shape = SubResource("CapsuleShape3D_svqgr")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+gi_mode = 0
+pixel_size = 0.008
+shaded = true
+alpha_cut = 2
+texture = ExtResource("3_53bjw")
+
+[node name="Outline" type="Sprite3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -0.0200005)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.008
+texture = ExtResource("3_53bjw")
+
+[node name="Eyes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07)
+
+[node name="EyesSprite" type="Sprite3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0495085)
+alpha_cut = 1
+texture = ExtResource("3_ycv16")
+
+[node name="LeftPupil" type="Sprite3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 0, 0)
+alpha_cut = 1
+texture = ExtResource("4_obhfg")
+
+[node name="RightPupil" type="Sprite3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0, 0)
+alpha_cut = 1
+texture = ExtResource("4_obhfg")
+
+[node name="TouchedParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0597913)
+emitting = false
+explosiveness = 1.0
+visibility_aabb = AABB(-3.56019, -7.83819, -2.14925, 7.52696, 8.41514, 4.33642)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_7fa2k")
+draw_pass_1 = SubResource("SphereMesh_the5u")
+
+[node name="DashParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0550019)
+emitting = false
+amount = 2
+lifetime = 0.3
+visibility_aabb = AABB(-2.00001, -2.00001, -2.00001, 4.00002, 4.00002, 4.00002)
+process_material = SubResource("ParticleProcessMaterial_ad4px")
+draw_pass_1 = SubResource("PlaneMesh_vbo8h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "cake_animations/cake_idle"
+libraries = {
+"cake_animations": ExtResource("3_cw3hs")
+}
+
+[node name="HurtAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_eheug")
+
+[node name="FallAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_4iu51")

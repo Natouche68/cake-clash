@@ -1,0 +1,74 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://ddd7iws7bjm3f"
+path="res://.godot/imported/fridge.glb-5069c6630d9eceb8895bf7f92403dbeb.scn"
+
+[deps]
+
+source_file="res://game/models/fridge.glb"
+dest_files=["res://.godot/imported/fridge.glb-5069c6630d9eceb8895bf7f92403dbeb.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="FridgeMesh"
+nodes/apply_root_scale=true
+nodes/root_scale=1.2
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"Cake": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Cake.tres"
+},
+"Chocolate": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Chocolate.tres"
+},
+"Cookie": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Cookie.tres"
+},
+"Cream1": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Cream1.tres"
+},
+"Cream2": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Cream2.tres"
+},
+"Firdge": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Firdge.tres"
+},
+"Plate": {
+"use_external/enabled": true,
+"use_external/path": "res://game/models/fridge_materials/Plate.tres"
+}
+},
+"nodes": {
+"PATH:Plate": {
+"decomposition/convexhull_downsampling": 2,
+"decomposition/max_concavity": 0.05,
+"decomposition/max_convex_hulls": 10,
+"decomposition/max_num_vertices_per_convex_hull": 64,
+"decomposition/mode": 1,
+"decomposition/plane_downsampling": 2,
+"generate/physics": true
+}
+}
+}
+gltf/embedded_image_handling=1

@@ -1,0 +1,271 @@
+[gd_scene load_steps=21 format=3 uid="uid://jnx74gf5vqtp"]
+
+[ext_resource type="Script" path="res://menus/controller_select_screen.gd" id="1_5chvo"]
+[ext_resource type="Texture2D" uid="uid://c4ovi30470i0t" path="res://menus/wasd space scheme icon.png" id="2_7u7uj"]
+[ext_resource type="Texture2D" uid="uid://dxey4uudkssxp" path="res://menus/arrow shift scheme icon.png" id="3_4yp4u"]
+[ext_resource type="Texture2D" uid="uid://bgi4uns50b8ds" path="res://menus/controller scheme icon.png" id="4_bksbl"]
+[ext_resource type="PackedScene" uid="uid://d0da4of8nnbq5" path="res://menus/character_select_screen.tscn" id="5_c1irg"]
+[ext_resource type="Texture2D" uid="uid://v6n7ufa2v353" path="res://menus/shift key icon.png" id="6_aw5rk"]
+[ext_resource type="Shader" path="res://visuals/background_grid.gdshader" id="6_k6lpw"]
+[ext_resource type="Texture2D" uid="uid://jqo0ettiumum" path="res://menus/a button icon.png" id="7_in81t"]
+[ext_resource type="Texture2D" uid="uid://dhsptxbrm7407" path="res://menus/background pattern.png" id="7_s5l7x"]
+[ext_resource type="Texture2D" uid="uid://4c46lrswwmdf" path="res://menus/no controller picked icon.png" id="8_0fy73"]
+[ext_resource type="Texture2D" uid="uid://dn2rbr1jfc5wn" path="res://menus/title bar.png" id="8_mhg7d"]
+[ext_resource type="FontFile" uid="uid://bmthvtylpg85a" path="res://ui/LilitaOne-Regular.ttf" id="9_yr4wr"]
+[ext_resource type="Texture2D" uid="uid://cnmktnuq0q4g5" path="res://menus/player 1 icon.png" id="10_n1nlx"]
+[ext_resource type="Texture2D" uid="uid://dhu2lbg5s7yll" path="res://menus/player 2 icon.png" id="12_2mt4s"]
+[ext_resource type="Texture2D" uid="uid://df55cih2a2ivq" path="res://menus/player 3 icon.png" id="13_jdbi5"]
+[ext_resource type="Texture2D" uid="uid://3mx3h76jqj7t" path="res://menus/player 4 icon.png" id="14_4qjyl"]
+[ext_resource type="Texture2D" uid="uid://cbbcmflqrdguk" path="res://menus/space key icon.png" id="15_6fj1o"]
+[ext_resource type="AudioStream" uid="uid://cmh110k5cn51o" path="res://menus/continue.wav" id="18_vlm3k"]
+[ext_resource type="AudioStream" uid="uid://cele0qi41kyrf" path="res://menus/button clicked.wav" id="19_iuupr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hhtt"]
+shader = ExtResource("6_k6lpw")
+shader_parameter/rotation_angle = 0.785
+shader_parameter/pattern = ExtResource("7_s5l7x")
+
+[node name="ControllerSelectScreen" type="CanvasLayer"]
+script = ExtResource("1_5chvo")
+wasd_space_control_scheme_texture = ExtResource("2_7u7uj")
+arrow_shift_control_scheme_texture = ExtResource("3_4yp4u")
+controller_control_scheme_texture = ExtResource("4_bksbl")
+space_key_icon_texture = ExtResource("15_6fj1o")
+shift_key_icon_texture = ExtResource("6_aw5rk")
+button_a_icon_texture = ExtResource("7_in81t")
+character_select_screen_scene = ExtResource("5_c1irg")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7hhtt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 840.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+color = Color(1, 0.866667, 0.168627, 1)
+
+[node name="TitleBar" type="TextureRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -540.0
+offset_top = 65.0
+offset_right = 540.0
+offset_bottom = 265.0
+grow_horizontal = 2
+pivot_offset = Vector2(540, 100)
+texture = ExtResource("8_mhg7d")
+
+[node name="TitleLabel" type="Label" parent="TitleBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.93827, 0.613281, 1)
+theme_override_colors/font_outline_color = Color(0.494118, 0.298039, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("9_yr4wr")
+theme_override_font_sizes/font_size = 140
+text = "Controller Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player1" type="Node" parent="."]
+
+[node name="PlayerIcon" type="TextureRect" parent="Player1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -789.0
+offset_top = -274.8
+offset_right = -533.0
+offset_bottom = -18.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("10_n1nlx")
+
+[node name="PlayerControlScheme" type="TextureRect" parent="Player1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -915.2
+offset_top = -102.0
+offset_right = -403.2
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("8_0fy73")
+
+[node name="Player2" type="Node" parent="."]
+
+[node name="PlayerIcon" type="TextureRect" parent="Player2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.53
+offset_top = -274.8
+offset_right = -93.53
+offset_bottom = -18.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("12_2mt4s")
+
+[node name="PlayerControlScheme" type="TextureRect" parent="Player2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.73
+offset_top = -102.0
+offset_right = 36.27
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("8_0fy73")
+
+[node name="Player3" type="Node" parent="."]
+
+[node name="PlayerIcon" type="TextureRect" parent="Player3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 89.9399
+offset_top = -274.8
+offset_right = 345.94
+offset_bottom = -18.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("13_jdbi5")
+
+[node name="PlayerControlScheme" type="TextureRect" parent="Player3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.66
+offset_top = -102.0
+offset_right = 475.34
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("8_0fy73")
+
+[node name="Player4" type="Node" parent="."]
+
+[node name="PlayerIcon" type="TextureRect" parent="Player4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 529.41
+offset_top = -274.8
+offset_right = 785.41
+offset_bottom = -18.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("14_4qjyl")
+
+[node name="PlayerControlScheme" type="TextureRect" parent="Player4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 403.2
+offset_top = -102.0
+offset_right = 915.2
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("8_0fy73")
+
+[node name="ContinueLabel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ContinueButton" type="TextureRect" parent="ContinueLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -201.0
+offset_right = -32.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("15_6fj1o")
+
+[node name="Label" type="Label" parent="ContinueLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -124.0
+offset_right = 209.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 51.2)
+theme_override_colors/font_color = Color(1, 0.937255, 0.611765, 1)
+theme_override_colors/font_outline_color = Color(0.941176, 0.619608, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("9_yr4wr")
+theme_override_font_sizes/font_size = 72
+text = "Continue"
+vertical_alignment = 1
+
+[node name="ContinueAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_vlm3k")
+volume_db = -6.0
+
+[node name="ButtonClickedAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_iuupr")
+volume_db = -6.0

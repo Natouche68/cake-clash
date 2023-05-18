@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqkb1vcp5ufgw"]
+
+[ext_resource type="Script" path="res://menus/character_selector.gd" id="1_34kkl"]
+[ext_resource type="Texture2D" uid="uid://cnmktnuq0q4g5" path="res://menus/player 1 icon.png" id="2_jknnf"]
+[ext_resource type="Texture2D" uid="uid://ccy7no71g0hgh" path="res://player/sprites/cupcake.png" id="2_q7fa5"]
+[ext_resource type="Texture2D" uid="uid://cbbcmflqrdguk" path="res://menus/space key icon.png" id="2_xmt8s"]
+[ext_resource type="Texture2D" uid="uid://v6n7ufa2v353" path="res://menus/shift key icon.png" id="3_rau7q"]
+[ext_resource type="Texture2D" uid="uid://cwubtiq08xyke" path="res://menus/arrow icon.png" id="4_0s4d4"]
+[ext_resource type="Texture2D" uid="uid://jqo0ettiumum" path="res://menus/a button icon.png" id="4_w46r5"]
+[ext_resource type="Texture2D" uid="uid://ct8n6uypip7le" path="res://menus/checkmark icon.png" id="5_u42mc"]
+[ext_resource type="AudioStream" uid="uid://cmh110k5cn51o" path="res://menus/continue.wav" id="9_3dkj0"]
+[ext_resource type="AudioStream" uid="uid://cele0qi41kyrf" path="res://menus/button clicked.wav" id="10_88a3g"]
+
+[node name="CharacterSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_34kkl")
+space_key_icon_texture = ExtResource("2_xmt8s")
+shift_key_icon_texture = ExtResource("3_rau7q")
+button_a_icon_texture = ExtResource("4_w46r5")
+checkmark_texture = ExtResource("5_u42mc")
+
+[node name="PlayerIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 269.0
+offset_right = 334.0
+offset_bottom = 525.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("2_jknnf")
+
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 78.0
+offset_top = -48.0
+offset_right = 334.0
+offset_bottom = 208.0
+grow_vertical = 2
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("2_q7fa5")
+
+[node name="ArrowLeft" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 572.0
+offset_right = 108.0
+offset_bottom = 700.0
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("4_0s4d4")
+
+[node name="ArrowRight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 572.0
+offset_right = 432.0
+offset_bottom = 700.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("4_0s4d4")
+
+[node name="CheckmarkIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 712.0
+offset_right = 332.0
+offset_bottom = 968.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("5_u42mc")
+
+[node name="ContinueAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3dkj0")
+volume_db = -6.0
+
+[node name="ButtonClickedAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_88a3g")
+volume_db = -6.0

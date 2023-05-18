@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://btj01f4rab7jp"]
+
+[ext_resource type="Material" uid="uid://j13kbphdubkm" path="res://visuals/border_material.tres" id="1_6wddx"]
+
+[resource]
+resource_name = "Cookie"
+next_pass = ExtResource("1_6wddx")
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.807479, 0.548533, 0.00517753, 1)

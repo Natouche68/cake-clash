@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://btoj8lifpi5hn"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_k3rg8"]
+[ext_resource type="PackedScene" uid="uid://ddd7iws7bjm3f" path="res://game/models/fridge.glb" id="2_hrf5w"]
+[ext_resource type="PackedScene" uid="uid://bs2avwyx0r4lf" path="res://ui/leaderboard.tscn" id="2_q02v8"]
+[ext_resource type="PackedScene" uid="uid://4ox7738wmp3l" path="res://ui/start_countdown.tscn" id="3_gyh6y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3o2j"]
+sky_top_color = Color(0.164706, 0.784314, 0.905882, 1)
+sky_horizon_color = Color(0.597059, 0.748039, 0.77549, 1)
+ground_bottom_color = Color(0.223529, 0.207843, 0.196078, 1)
+ground_horizon_color = Color(0.597059, 0.748039, 0.77549, 1)
+
+[sub_resource type="Sky" id="Sky_pwin2"]
+sky_material = SubResource("ProceduralSkyMaterial_e3o2j")
+
+[sub_resource type="Environment" id="Environment_bl8c5"]
+background_mode = 2
+sky = SubResource("Sky_pwin2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrh58"]
+size = Vector3(48, 1, 48)
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_k3rg8")
+leaderboard_scene = ExtResource("2_q02v8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bl8c5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99593, -0.0637302, 0.0637302, 4.40505e-09, 0.707107, 0.707107, -0.0901281, -0.704229, 0.704229, 8, 5, 6)
+light_energy = 1.4
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 5, 11)
+fov = 60.9
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="StartCountdown" parent="." instance=ExtResource("3_gyh6y")]
+
+[node name="FridgeMesh" parent="." instance=ExtResource("2_hrf5w")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1, 0)
+
+[node name="FallDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallDetector"]
+shape = SubResource("BoxShape3D_vrh58")
+
+[node name="Player1Position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0.5, 0)
+
+[node name="Player2Position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 0.5, 0)
+
+[node name="Player3Position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.2)
+
+[node name="Player4Position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.2)
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="body_entered" from="FallDetector" to="." method="_on_fall_detector_body_entered"]

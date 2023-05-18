@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://boq8kbycbp27y"]
+
+[ext_resource type="Material" uid="uid://j13kbphdubkm" path="res://visuals/border_material.tres" id="1_q4r5s"]
+
+[resource]
+resource_name = "Cream1"
+next_pass = ExtResource("1_q4r5s")
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.951865, 0.575811, 0.892275, 1)

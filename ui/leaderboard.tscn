@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs2avwyx0r4lf"]
+
+[ext_resource type="Script" path="res://ui/leaderboard.gd" id="1_luedp"]
+[ext_resource type="PackedScene" uid="uid://bd52y3kpy6ses" path="res://ui/leaderboard_row.tscn" id="2_ct0rj"]
+[ext_resource type="Texture2D" uid="uid://cbbcmflqrdguk" path="res://menus/space key icon.png" id="3_0wfwh"]
+[ext_resource type="FontFile" uid="uid://bmthvtylpg85a" path="res://ui/LilitaOne-Regular.ttf" id="4_fqy7f"]
+[ext_resource type="Texture2D" uid="uid://v6n7ufa2v353" path="res://menus/shift key icon.png" id="4_wcj5y"]
+[ext_resource type="Texture2D" uid="uid://jqo0ettiumum" path="res://menus/a button icon.png" id="5_kpdr8"]
+[ext_resource type="AudioStream" uid="uid://bpaaj0xylv4ut" path="res://ui/win.wav" id="7_qb68p"]
+[ext_resource type="AudioStream" uid="uid://cele0qi41kyrf" path="res://menus/button clicked.wav" id="8_x8q4j"]
+
+[node name="Leaderboard" type="CanvasLayer"]
+script = ExtResource("1_luedp")
+leaderboard_row_scene = ExtResource("2_ct0rj")
+space_key_icon_texture = ExtResource("3_0wfwh")
+shift_key_icon_texture = ExtResource("4_wcj5y")
+button_a_icon_texture = ExtResource("5_kpdr8")
+
+[node name="ContinueLabel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="ContinueButton" type="TextureRect" parent="ContinueLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.00002
+offset_top = -225.0
+offset_right = 248.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("3_0wfwh")
+
+[node name="Label" type="Label" parent="ContinueLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 198.0
+offset_top = -148.0
+offset_right = 489.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 51.2)
+theme_override_colors/font_color = Color(1, 0.937255, 0.611765, 1)
+theme_override_colors/font_outline_color = Color(0.941176, 0.619608, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("4_fqy7f")
+theme_override_font_sizes/font_size = 72
+text = "Continue"
+vertical_alignment = 1
+
+[node name="WinAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qb68p")
+
+[node name="ContinueAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_x8q4j")
